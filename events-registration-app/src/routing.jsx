@@ -9,11 +9,11 @@ export const router = createBrowserRouter([
     element: <EventsList />,
   },
   {
-    path: "/event_registration",
+    path: "/event_registration/:eventId",
     element: <EventRegistration />,
   },
   {
-    path: "/event_participants",
+    path: "/event_participants/:eventId",
     element: <EventParticipants />,
   },
 ]);

@@ -9,15 +9,15 @@ import {
 import { useNavigate } from "react-router-dom";
 
 function CardEventItem(props) {
-  const { title, description, eventDate, organizer } = props;
+  const { title, description, eventDate, organizer, _id } = props;
   const navigate = useNavigate();
 
   const handleRegisterClick = () => {
-    navigate("/event_registration");
+    navigate(`/event_registration/${_id}`);
   };
 
   const handleParticipantViewClick = () => {
-    navigate("/event_participants");
+    navigate(`/event_participants/${_id}`);
   };
 
   return (
