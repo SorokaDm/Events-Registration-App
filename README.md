@@ -4,6 +4,8 @@
 
 This is a web-based application for events registration, built with a combination of HTML/CSS/JavaScript for the front-end and Node.js for the back-end. The application allows users to view a list of available events, register for events, and view a list of registered participants.
 
+**Live Demo:** The application is deployed and can be accessed at [https://my-events-registration-app.netlify.app/](https://my-events-registration-app.netlify.app/)
+
 ## Running the Application
 
 1. Clone this repository to your local machine.
