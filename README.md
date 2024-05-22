@@ -13,7 +13,9 @@ Implement the events board page where users can observe a paginated list of avai
 - Description
 - Event Date
 - Organizer
-  
+
+![image](https://github.com/SorokaDm/Events-Registration-App/assets/97941797/df4e1c9e-7373-4407-aad9-9c5661f470a1)
+
 ### Event Registration Page
 By clicking on “Register”, users should be redirected to the event registration page, which contains a registration form with the following fields:
 
@@ -21,11 +23,15 @@ By clicking on “Register”, users should be redirected to the event registrat
 - Email
 - Date of Birth
 - “Where did you hear about this event?”
-  
+
+  ![image](https://github.com/SorokaDm/Events-Registration-App/assets/97941797/1f13d4f4-2007-4001-b8be-a4154cf65a51)
+
 Once the form is submitted, the response should be stored in a database.
 
 ### Event Participants Page
 Implement the event participants page where users can see a list of registered participants. This page should be available by clicking on the “View” button.
+
+![image](https://github.com/SorokaDm/Events-Registration-App/assets/97941797/c325ea8b-4c37-41aa-92a6-3280c388c2a0)
 
 ## Running the Application
 
