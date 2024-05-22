@@ -4,13 +4,13 @@ function CardParticipantItem(props) {
   const { fullName, email } = props;
 
   return (
-    <Grid item xs={12} md={3}>
+    <Grid item xs={12} sm={6}>
       <Card
         sx={{
-          width: "auto",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          height: "100%",
         }}
         elevation={4}
       >

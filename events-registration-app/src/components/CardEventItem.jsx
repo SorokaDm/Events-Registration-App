@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Button,
   Card,
@@ -7,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 function CardEventItem(props) {
   const { title, description, eventDate, organizer, _id } = props;
@@ -19,6 +21,10 @@ function CardEventItem(props) {
   const handleParticipantViewClick = () => {
     navigate(`/event_participants/${_id}`);
   };
+
+  const formattedDate = eventDate
+    ? format(new Date(eventDate), "dd-MM-yyyy HH:mm")
+    : "";
 
   return (
     <Grid item xs={12} md={3}>
@@ -39,7 +45,7 @@ function CardEventItem(props) {
             {description}
           </Typography>
           <Typography variant="body1" color="text.secondary" align="left">
-            {eventDate}
+            {formattedDate}
           </Typography>
           <Typography variant="body1" color="text.secondary" align="left">
             {organizer}
