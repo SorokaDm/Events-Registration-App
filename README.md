@@ -9,17 +9,19 @@ This is a web-based application for events registration, built with a combinatio
 ### Events Board Page
 Implement the events board page where users can observe a paginated list of available events. Events should be pre-populated in the database manually or via a seed script. Each event should include the following details:
 
-Title
-Description
-Event Date
-Organizer
+- Title
+- Description
+- Event Date
+- Organizer
+  
 ### Event Registration Page
 By clicking on “Register”, users should be redirected to the event registration page, which contains a registration form with the following fields:
 
-Full Name
-Email
-Date of Birth
-“Where did you hear about this event?”
+- Full Name
+- Email
+- Date of Birth
+- “Where did you hear about this event?”
+  
 Once the form is submitted, the response should be stored in a database.
 
 ### Event Participants Page
