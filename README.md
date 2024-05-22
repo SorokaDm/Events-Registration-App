@@ -15,10 +15,10 @@ This is a web-based application for events registration, built with a combinatio
 4. Set up environment variables:
    - Create a `.env` file in the root directory.
    - Define environment variables as needed. For example:
-     ```
-     PORT=5000
-     MONGODB_URI=<your MongoDB URI>
-     ```
+   ```
+   PORT=5000
+   MONGODB_URI=<your MongoDB URI>
+   ```
 5. Navigate to the project directory and run:
    ```
    npm run dev
