@@ -3,40 +3,56 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import {
   Container,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  FormControl,
   Typography,
   TextField,
   Button,
   Stack,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
 } from "@mui/material";
 import Header from "./Header";
 
 function EventRegistration() {
   const { eventId } = useParams();
+  const navigate = useNavigate();
+
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [referralSource, setReferralSource] = useState("");
-  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      await axios.post(`http://localhost:5000/api/register/${eventId}`, {
-        fullName,
-        email,
-        dateOfBirth,
-        referralSource,
-      });
+    const errors = {};
+    if (!/^[a-zA-Zа-яА-Я\s]+$/.test(fullName)) {
+      errors.fullName = "Full Name can only contain letters and spaces";
+    }
 
-      navigate(`/?registrationSuccess=true`);
-    } catch (error) {
-      console.error("Error registering participant:", error);
+    const currentDate = new Date();
+    const dob = new Date(dateOfBirth);
+    if (dob > currentDate) {
+      errors.dateOfBirth = "Date of Birth cannot be in the future";
+    }
+
+    if (Object.keys(errors).length === 0) {
+      try {
+        await axios.post(`http://localhost:5000/api/register/${eventId}`, {
+          fullName,
+          email,
+          dateOfBirth,
+          referralSource,
+        });
+        navigate(`/?registrationSuccess=true`);
+      } catch (error) {
+        console.error("Error registering participant:", error);
+      }
+    } else {
+      setErrors(errors);
     }
   };
 
@@ -51,13 +67,17 @@ function EventRegistration() {
           <TextField
             label="Full Name"
             value={fullName}
+            required
             onChange={(e) => setFullName(e.target.value)}
             fullWidth
             margin="normal"
+            error={!!errors.fullName}
+            helperText={errors.fullName}
           />
           <TextField
             label="Email"
             type="email"
+            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             fullWidth
@@ -67,12 +87,15 @@ function EventRegistration() {
             label="Date of Birth"
             type="date"
             value={dateOfBirth}
+            required
             onChange={(e) => setDateOfBirth(e.target.value)}
             fullWidth
             margin="normal"
             InputLabelProps={{
               shrink: true,
             }}
+            error={!!errors.dateOfBirth}
+            helperText={errors.dateOfBirth}
           />
 
           <FormControl
@@ -84,7 +107,7 @@ function EventRegistration() {
             }}
           >
             <FormLabel
-              id="demo-row-radio-buttons-group-label"
+              id="referral-source-label"
               sx={{
                 fontSize: "1.25rem",
                 mb: 2,
@@ -94,8 +117,8 @@ function EventRegistration() {
             </FormLabel>
             <RadioGroup
               row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
+              aria-labelledby="referral-source-label"
+              name="referral-source"
               value={referralSource}
               onChange={(e) => setReferralSource(e.target.value)}
             >
