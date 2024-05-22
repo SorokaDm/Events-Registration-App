@@ -1,5 +1,5 @@
 import { Router } from "express";
-import mongoose, { Types } from "mongoose"; // Додаємо імпорт Types
+import mongoose, { Types } from "mongoose";
 import Event from "../models/Event.js";
 import Participant from "../models/Participant.js";
 const router = Router();
@@ -57,7 +57,6 @@ router.get("/events/:eventId/participants", async (req, res) => {
   }
 });
 
-// Додаємо новий роут для отримання кількості реєстрацій на день
 router.get("/events/:eventId/registrationData", async (req, res) => {
   const { eventId } = req.params;
 
