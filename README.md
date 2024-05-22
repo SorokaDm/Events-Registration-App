@@ -60,6 +60,7 @@ Implement the event participants page where users can see a list of registered p
 
 - Sorting events on the events board page by title, event date, and organizer.
 - Form validation on the event registration page.
+- Ability to search participants by full name, email.
 - Displaying a line/bar chart showing the amount of registrations per day for each event on the event participants page.
 
 ## Technologies Used
