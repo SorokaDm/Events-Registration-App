@@ -11,20 +11,26 @@ This is a web-based application for events registration, built with a combinatio
 1. Clone this repository to your local machine.
 2. Navigate to the project directory.
 3. Install dependencies for both the front-end and back-end:
+
    ```
    npm install
    ```
+
 4. Set up environment variables:
    - Create a `.env` file in the root directory.
    - Define environment variables as needed. For example:
+
    ```
    PORT=5000
    MONGODB_URI=<your MongoDB URI>
    ```
+
 5. Navigate to the project directory and run:
+
    ```
    npm run dev
    ```
+
 7. Access the application in your browser at `http://localhost:5173`.
 
 ## Basic functionality
@@ -47,7 +53,7 @@ By clicking on “Register”, users should be redirected to the event registrat
 - Date of Birth
 - “Where did you hear about this event?”
 
-  ![image](https://github.com/SorokaDm/Events-Registration-App/assets/97941797/1f13d4f4-2007-4001-b8be-a4154cf65a51)
+![image](https://github.com/SorokaDm/Events-Registration-App/assets/97941797/1f13d4f4-2007-4001-b8be-a4154cf65a51)
 
 Once the form is submitted, the response should be stored in a database.
 
