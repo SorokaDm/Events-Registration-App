@@ -8,6 +8,7 @@ import {
   Select,
   FormControl,
   InputLabel,
+  Pagination,
 } from "@mui/material";
 import Header from "./Header";
 import CardEventItem from "./CardEventItem";
@@ -17,6 +18,8 @@ function EventsList() {
   const [events, setEvents] = useState([]);
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+  const [page, setPage] = useState(1);
+  const [eventsPerPage] = useState(8); // Кількість подій на сторінку
 
   useEffect(() => {
     axios
@@ -37,6 +40,10 @@ function EventsList() {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
 
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
   const sortedEvents = events.slice().sort((a, b) => {
     switch (sortBy) {
       case "date":
@@ -53,6 +60,10 @@ function EventsList() {
           : b.title.localeCompare(a.title);
     }
   });
+
+  const indexOfLastEvent = page * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = sortedEvents.slice(indexOfFirstEvent, indexOfLastEvent);
 
   return (
     <>
@@ -107,9 +118,18 @@ function EventsList() {
           </Grid>
         </Grid>
         <Grid container spacing={4}>
-          {sortedEvents.map((item) => (
+          {currentEvents.map((item) => (
             <CardEventItem key={item._id} {...item} />
           ))}
+        </Grid>
+        <Grid container justifyContent="center" mt={4}>
+          <Pagination
+            count={Math.ceil(sortedEvents.length / eventsPerPage)}
+            page={page}
+            onChange={handlePageChange}
+            shape="rounded"
+            size="large"
+          />
         </Grid>
       </Container>
     </>
