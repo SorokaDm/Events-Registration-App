@@ -4,7 +4,7 @@ function CardParticipantItem(props) {
   const { fullName, email } = props;
 
   return (
-    <Grid item xs={12} sm={6}>
+    <Grid item xs={12} sm={6} sd={12}>
       <Card
         sx={{
           display: "flex",

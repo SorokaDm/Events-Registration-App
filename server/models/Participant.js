@@ -6,6 +6,10 @@ const participantSchema = new Schema({
   email: { type: String, required: true },
   dateOfBirth: { type: Date, required: true },
   referralSource: { type: String, required: true },
+  registeredAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Participant = model("Participant", participantSchema);

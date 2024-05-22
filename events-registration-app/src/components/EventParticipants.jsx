@@ -1,14 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { Container, Grid, Typography, Button, TextField } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Typography,
+  Button,
+  TextField,
+  Divider,
+  Box,
+} from "@mui/material";
 import Header from "./Header";
 import CardParticipantItem from "./CardParticipantItem";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
-function EventParticipants() {
+const EventParticipants = () => {
   const [participants, setParticipants] = useState([]);
   const [eventName, setEventName] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [registrationData, setRegistrationData] = useState([]); // Оголошуємо registrationData тут
   const { eventId } = useParams();
 
   useEffect(() => {
@@ -36,8 +55,21 @@ function EventParticipants() {
       }
     }
 
+    async function fetchRegistrationData() {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/events/${eventId}/registrationData`
+        );
+
+        setRegistrationData(response.data);
+      } catch (error) {
+        console.error("Error fetching registration data:", error);
+      }
+    }
+
     fetchEventData();
     fetchParticipants();
+    fetchRegistrationData();
   }, [eventId]);
 
   const handleSearchChange = (event) => {
@@ -71,9 +103,43 @@ function EventParticipants() {
           </Typography>
         ) : (
           <Grid container spacing={4}>
-            {filteredParticipants.map((item) => (
-              <CardParticipantItem key={item._id} {...item} />
-            ))}
+            <Grid item md={12}>
+              <Box mb={3}>
+                <Typography variant="h6" align="left">
+                  Registration Data
+                </Typography>
+                <Divider />
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart
+                    data={registrationData}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="date" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="registrations"
+                      stroke="#8884d8"
+                      activeDot={{ r: 8 }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </Box>
+            </Grid>
+            <Grid item md={12}>
+              <Typography variant="h6" align="left">
+                Participant List
+              </Typography>
+              <Divider />
+              <Grid container spacing={2} sx={{ mt: 2 }}>
+                {filteredParticipants.map((item) => (
+                  <CardParticipantItem key={item._id} {...item} />
+                ))}
+              </Grid>
+            </Grid>
           </Grid>
         )}
         <Button variant="text" component={Link} to="/" sx={{ mt: 3 }}>
@@ -82,6 +148,6 @@ function EventParticipants() {
       </Container>
     </>
   );
-}
+};
 
 export default EventParticipants;

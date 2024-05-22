@@ -31,7 +31,6 @@ function EventsList() {
 
   const handleSortByChange = (event) => {
     setSortBy(event.target.value);
-    console.log(events);
   };
 
   const handleSortOrderChange = () => {
