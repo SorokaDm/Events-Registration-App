@@ -27,7 +27,7 @@ const EventParticipants = () => {
   const [participants, setParticipants] = useState([]);
   const [eventName, setEventName] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [registrationData, setRegistrationData] = useState([]); // Оголошуємо registrationData тут
+  const [registrationData, setRegistrationData] = useState([]);
   const { eventId } = useParams();
 
   useEffect(() => {

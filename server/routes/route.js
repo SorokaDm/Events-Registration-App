@@ -57,7 +57,6 @@ router.get("/events/:eventId/participants", async (req, res) => {
   }
 });
 
-// Додаємо новий роут для отримання кількості реєстрацій на день
 router.get("/events/:eventId/registrationData", async (req, res) => {
   const { eventId } = req.params;
 
