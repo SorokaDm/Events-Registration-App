@@ -21,7 +21,7 @@ function EventsList() {
   const [page, setPage] = useState(1);
   const [eventsPerPage] = useState(8);
 
-  const myUrl = import.meta.env.VITE_APP_MY_URL || "http://localhost:5173";
+  const myUrl = import.meta.env.VITE_APP_MY_URL || "http://localhost:5000";
 
   useEffect(() => {
     axios

@@ -25,7 +25,7 @@ function EventRegistration() {
   const [referralSource, setReferralSource] = useState("");
   const [errors, setErrors] = useState({});
 
-  const myUrl = import.meta.env.VITE_APP_MY_URL || "http://localhost:5173";
+  const myUrl = import.meta.env.VITE_APP_MY_URL || "http://localhost:5000";
 
   const handleSubmit = async (e) => {
     e.preventDefault();

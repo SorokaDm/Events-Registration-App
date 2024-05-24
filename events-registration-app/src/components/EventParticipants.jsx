@@ -30,7 +30,7 @@ const EventParticipants = () => {
   const [registrationData, setRegistrationData] = useState([]);
   const { eventId } = useParams();
 
-  const myUrl = import.meta.env.VITE_APP_MY_URL || "http://localhost:5173";
+  const myUrl = import.meta.env.VITE_APP_MY_URL || "http://localhost:5000";
 
   useEffect(() => {
     async function fetchEventData() {
