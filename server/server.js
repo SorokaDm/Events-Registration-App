@@ -20,6 +20,17 @@ async function startServer() {
 
     app.use("/api", route);
 
+    const __dirname = path.resolve();
+    app.use(
+      express.static(path.join(__dirname, "events-registration-app/dist"))
+    );
+
+    app.get("*", (req, res) => {
+      res.sendFile(
+        path.join(__dirname, "events-registration-app/dist", "index.html")
+      );
+    });
+
     app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`);
     });
