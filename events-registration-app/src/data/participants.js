@@ -22,7 +22,7 @@ export const participants = [
   },
   {
     eventId: "60d5f9b8f1e72b3a4c3a9b5e",
-    fullName: "Bob Brown",
+    fullName: "Bob Browns",
     email: "bob.brown@example.com",
     dateOfBirth: "1988-07-22T00:00:00Z",
     referralSource: "Social media",
