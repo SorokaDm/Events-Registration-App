@@ -19,7 +19,7 @@ function EventsList() {
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
   const [page, setPage] = useState(1);
-  const [eventsPerPage] = useState(8); // Кількість подій на сторінку
+  const [eventsPerPage] = useState(8);
 
   useEffect(() => {
     axios
