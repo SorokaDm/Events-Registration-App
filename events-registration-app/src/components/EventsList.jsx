@@ -21,11 +21,17 @@ function EventsList() {
   const [page, setPage] = useState(1);
   const [eventsPerPage] = useState(8);
 
+  const myUrl = import.meta.env.VITE_APP_MY_URL || "http://localhost:5173";
+
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api")
+      .get(`${myUrl}/api`)
       .then((response) => {
-        setEvents(response.data);
+        if (Array.isArray(response.data)) {
+          setEvents(response.data);
+        } else {
+          console.error("Data is not an array", response.data);
+        }
       })
       .catch((error) => {
         console.error("There was an error fetching the events!", error);
@@ -84,12 +90,12 @@ function EventsList() {
             <Grid container spacing={2} alignItems="center">
               <Grid item>
                 <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="demo-select-small-label">Sort By</InputLabel>
+                  <InputLabel>Sort By</InputLabel>
                   <Select
                     value={sortBy}
                     onChange={handleSortByChange}
                     inputProps={{ "aria-label": "Sort By" }}
-                    label="Age"
+                    label="Sort By"
                   >
                     <MenuItem value="">
                       <em>None</em>

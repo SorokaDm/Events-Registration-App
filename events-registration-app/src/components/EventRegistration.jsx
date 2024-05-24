@@ -25,6 +25,8 @@ function EventRegistration() {
   const [referralSource, setReferralSource] = useState("");
   const [errors, setErrors] = useState({});
 
+  const myUrl = import.meta.env.VITE_APP_MY_URL || "http://localhost:5173";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,7 +43,7 @@ function EventRegistration() {
 
     if (Object.keys(errors).length === 0) {
       try {
-        await axios.post(`http://localhost:5000/api/register/${eventId}`, {
+        await axios.post(`${myUrl}/api/register/${eventId}`, {
           fullName,
           email,
           dateOfBirth,

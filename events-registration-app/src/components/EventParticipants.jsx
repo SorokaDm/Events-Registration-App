@@ -30,12 +30,12 @@ const EventParticipants = () => {
   const [registrationData, setRegistrationData] = useState([]);
   const { eventId } = useParams();
 
+  const myUrl = import.meta.env.VITE_APP_MY_URL || "http://localhost:5173";
+
   useEffect(() => {
     async function fetchEventData() {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/events/${eventId}`
-        );
+        const response = await axios.get(`${myUrl}/api/events/${eventId}`);
 
         setEventName(response.data.title);
       } catch (error) {
@@ -46,7 +46,7 @@ const EventParticipants = () => {
     async function fetchParticipants() {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/events/${eventId}/participants`
+          `${myUrl}/api/events/${eventId}/participants`
         );
 
         setParticipants(response.data);
@@ -58,7 +58,7 @@ const EventParticipants = () => {
     async function fetchRegistrationData() {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/events/${eventId}/registrationData`
+          `${myUrl}/api/events/${eventId}/registrationData`
         );
 
         setRegistrationData(response.data);
